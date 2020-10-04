@@ -1,0 +1,70 @@
+{
+  "name": "loopback-starter-kit",
+  "version": "0.0.1",
+  "description": "loopback starter kit",
+  "keywords": [
+    "loopback-application",
+    "loopback"
+  ],
+  "main": "dist/index.js",
+  "engines": {
+    "node": ">=10.16"
+  },
+  "scripts": {
+    "build": "yarn clean && tsc",
+    "build:watch": "yarn clean && tsc --watch",
+    "clean": "rimraf dist *.tsbuildinfo .eslintcache",
+    "lint": "npm run prettier:check",
+    "lint:fix": "npm run prettier:fix",
+    "prettier:cli": "prettier \"**/*.ts\" \"**/*.js\"",
+    "prettier:check": "npm run prettier:cli -- -l",
+    "prettier:fix": "npm run prettier:cli -- --write",
+    "pretest": "npm run clean && npm run build",
+    "posttest": "npm run lint",
+    "docker:build": "docker build -t loopback-starter-kit .",
+    "docker:run": "docker run -p 3000:3000 -d loopback-starter-kit",
+    "migrate": "node ./dist/migrate",
+    "openapi-spec": "node ./src/openapi-spec",
+    "prestart": "npm run build",
+    "start": "node -r source-map-support/register .",
+    "dev": "nodemon",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "author": "lyhc <congly1311@gmail.com>",
+  "license": "",
+  "files": [
+    "README.md",
+    "dist",
+    "src",
+    "!*/__tests__"
+  ],
+  "dependencies": {
+    "@loopback/authentication": "^7.0.1",
+    "@loopback/boot": "^3.0.0",
+    "@loopback/core": "^2.10.0",
+    "@loopback/repository": "^3.0.0",
+    "@loopback/rest": "^7.0.0",
+    "@loopback/rest-explorer": "^3.0.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "loopback-connector-postgresql": "^5.1.0",
+    "tslib": "^2.0.0"
+  },
+  "devDependencies": {
+    "@loopback/testlab": "^3.2.5",
+    "@loopback/typeorm": "^0.2.0",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/node": "^10.17.34",
+    "nodemon": "^2.0.4",
+    "pg": "^8.3.3",
+    "prettier": "^2.1.1",
+    "rimraf": "^3.0.2",
+    "source-map-support": "^0.5.19",
+    "typescript": "~4.0.2"
+  }
+}
